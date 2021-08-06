@@ -54,7 +54,7 @@ module.exports = {
         new Dotenv(),
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
-            title: "SPENDID",
+            title: "addressBook",
             template: "./src/index.html",
             chunks: ["app", "styles"],
         }),
