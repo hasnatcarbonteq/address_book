@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/hasnatcarbonteq/address_book.git"
   },
-  "author": "Hasnat Amir",
   "license": "ISC",
+  "author": "Hasnat Amir",
   "bugs": {
     "url": "https://github.com/hasnatcarbonteq/address_book/issues"
   },

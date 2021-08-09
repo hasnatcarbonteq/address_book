@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import DataGrid from './components/DataGrid/DataGrid.jsx';
+import Home from './container/Home';
 import { Provider } from "react-redux";
 import store from './store'
 
@@ -9,8 +9,7 @@ function App() {
         <Provider store={store}>
             <Router>
                 <Switch>
-                    <Route path='/' component={DataGrid} />
-                    <Route path='/user/:username' component={DataGrid} />
+                    <Route path='/' component={Home} />
                 </Switch>
             </Router>
         </Provider>
