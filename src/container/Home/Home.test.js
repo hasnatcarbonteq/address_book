@@ -1,8 +1,8 @@
 import 'jsdom-global/register';
 import React from 'react'
 
-import DetailedView from './DetailedView.jsx'
-import { shallow, configure } from 'enzyme';
+import Home from './Home'
+import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 
@@ -77,8 +77,7 @@ describe('DetailedView', () => {
     it('All data should display', () => {
     
         const fetcher = true
-        const wrapper = shallow(<DetailedView details={details} {...fetcher}  />);
-        expect(wrapper.find("Row").childAt(2).text()).toEqual("City: Garden Grove")
+        const wrapper = shallow(<Home />);
         expect(wrapper.find("Row").children().length).toBe(7)
         
     })

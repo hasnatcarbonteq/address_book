@@ -14,7 +14,6 @@ const Apis = new Services_Apis()
 const getData = (index, nat) => async dispatch => {
 
     try{
-        console.log(nat)
         let res = await Apis.getData(index, nat)
         if(!res.errors){
             dispatch({
@@ -46,10 +45,9 @@ const getDetails = (data) => async dispatch => {
     }
 }
 
-const getReserveData = (index) => async dispatch => {
+const getReserveData = (index, nat) => async dispatch => {
     try{
-        console.log(index)
-        let res = await Apis.getReserveData(index)
+        let res = await Apis.getReserveData(index, nat)
         if(res.reserve){
             dispatch({
                 type: GET_RESERVE_DATA,
