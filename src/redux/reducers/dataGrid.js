@@ -3,25 +3,26 @@ import {
     GET_USER_DETAIL,
     SET_RESERVE_DATA,
     GET_RESERVE_DATA,
-} from '../actions/types'
+    CHANGE_NAT,
+} from '../types'
 
 const init = {
     isLoading: true,
-    index: 1,
+    page: 1,
     data: [], 
     reserveData: [],
     details: {},  
-    nat:'us',
+    nat:'US',
 }
 
 const dataGridReducer = (state = init, action) => {
     switch (action.type) {
         case GET_DATA:
-            let data = [ ...state.data, ...action.payload]
             return {
                 ...state,
                 isLoading: false,
-                data: data,
+                data: action.payload,
+                page: 1,
             }
         case GET_USER_DETAIL: 
             return {
@@ -32,7 +33,7 @@ const dataGridReducer = (state = init, action) => {
             return {
                 ...state,
                 reserveData: action.payload,
-                index: state.index+1,
+                page: state.page+1,
                 isLoading: false,
             }
         case GET_RESERVE_DATA: 
@@ -40,6 +41,11 @@ const dataGridReducer = (state = init, action) => {
             return {
                 ...state,
                 data: reserve,
+            }
+        case CHANGE_NAT:
+            return {
+                ...state,
+                nat: action.payload,
             }
         default:
             return state

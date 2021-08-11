@@ -8,6 +8,7 @@ import {
     getDetails,
     getReserveData,
 } from '../redux/actions/dataGrid'
+import {Link} from 'react-router-dom'
 
 function home() {
 
@@ -24,12 +25,13 @@ function home() {
     const [modal, setModal] = useState(false)
 
     // functions
-    const onScroll = async event => {
+    const onScroll = event => {
         let element = event.target;
         if(data.length < 1000){
             setLoadMore('fetching more results')
             if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-                await dispatch(getReserveData(dataGrid.index+1))
+                console.log(dataGrid.page)
+                dispatch(getReserveData(dataGrid.page+1))
                 setLoadMore('')
             }
         }else {
@@ -37,9 +39,9 @@ function home() {
         }
     };
 
-    const handleDetails = async  (user) => {
+    const handleDetails = (user) => {
 
-        await dispatch(getDetails(user))
+        dispatch(getDetails(user))
         setModal(true)
     }
 
@@ -47,7 +49,8 @@ function home() {
     // life cycle
     useEffect(() => {
         (async () => {
-            let res = dispatch(getData(dataGrid.index, dataGrid.nat))
+            console.log(dataGrid.nat)
+            let res = dispatch(getData(dataGrid.page, dataGrid.nat))
             setIsLoading(res)
         })()
     }, [])
@@ -67,6 +70,7 @@ function home() {
             <h1 className="title">
                 Address Book
             </h1>
+            <Link to="/settings">Settings</Link>
             <SearchBar 
                 data={data}
                 setSearchData={setSearchData}

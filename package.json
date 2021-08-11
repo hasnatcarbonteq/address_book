@@ -1,12 +1,18 @@
 {
   "name": "address_book",
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.js"
+    ]
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode=development --open --hot",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest -c jest.config.js --watch"
   },
   "repository": {
     "type": "git",
@@ -56,16 +62,28 @@
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "dotenv-webpack": "^7.0.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
+    "jest-enzyme": "^7.1.2",
+    "jsdom": "^16.7.0",
+    "jsdom-global": "^3.0.2",
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
+    "react-test-renderer": "^17.0.2",
     "style-loader": "^3.2.1",
     "webpack": "^5.48.0",
     "webpack-cli": "^4.7.2",

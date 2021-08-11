@@ -12,6 +12,7 @@ module.exports = {
     devServer:{
         port: 3000,
         watchContentBase: true,
+        historyApiFallback: true,
     },
     devtool: "source-map",
     module: {
