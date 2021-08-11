@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require("dotenv-webpack");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: '/src/index.js',
@@ -25,12 +26,32 @@ module.exports = {
                 }
             },
             {
-                test: /\.(css|less)$/,
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.less$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
-                    'less-loader',
-                ]
+                    {
+                        loader: "style-loader",
+                    },
+                    {
+                        loader: "css-loader", // translates CSS into CommonJS
+                    },
+                    {
+                        loader: "less-loader", // compiles Less to CSS
+                        options: {
+                            lessOptions: {
+                                modifyVars: {
+                                    'primary-color': '#90F5D7',
+                                    'text-color-secondary': '#5B6BF4',
+                                    'error-color': '#FE3180' // error state color
+                                },
+                                javascriptEnabled: true,
+                            },
+                        }
+                    },
+                ],
             },
             {
                 // Now we apply rule for images
@@ -54,6 +75,9 @@ module.exports = {
     plugins: [
         new Dotenv(),
         new webpack.ProgressPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "bundle.css",
+        }),
         new HtmlWebpackPlugin({
             title: "addressBook",
             template: "./src/index.html",

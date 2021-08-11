@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { Provider } from "react-redux";
 import store from './store'
 
-import Home from './container/Home';
-import Settings from './container/Settings'
+import Home from './container/Home/Home';
+import Settings from './container/Settings/Settings'
 
 function App() {
     return (

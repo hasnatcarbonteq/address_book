@@ -26,9 +26,9 @@ class Services_Apis {
         }
     }
 
-    getReserveData = async (index) => {
+    getReserveData = async (index, nat) => {
         try{
-            let res = await axios.get(`${server}/?page=${index}&results=50&seed=address&nat=us`) 
+            let res = await axios.get(`${server}/?page=${index+1}&results=50&seed=address&nat=${nat}`) 
             if(res.status === 200){
                 return {
                     reserve: res.data.results,

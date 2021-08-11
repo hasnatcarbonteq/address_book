@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import dataGridReducer from "./dataGrid";
+import dataGridReducer from "./dataGridReducer";
 
 const appReducer = combineReducers({
     dataGrid: dataGridReducer,

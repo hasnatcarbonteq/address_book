@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { 
     Row, 
     Col,
     Spin, 
 } from 'antd';
+
 
 
 function DataGrid(props) {
@@ -18,18 +19,20 @@ function DataGrid(props) {
 
 
     return (
-        <div className="dataTable" onScroll={onScroll}>
-            <Row className="tableHeader">
-                <Col span={1}>#</Col>
-                <Col span={3}> Image</Col>
-                <Col span={4}> First Name</Col>
-                <Col span={4}> Last Name</Col>
-                <Col span={4}> Username</Col>
-                <Col span={4}> Email</Col>
-            </Row>
+        <Row className="dataTable" onScroll={onScroll}>
+            <Col span={24}>
+                <Row className="tableHeader">
+                    <Col span={1}>#</Col>
+                    <Col span={3}> Image</Col>
+                    <Col span={4}> First Name</Col>
+                    <Col span={4}> Last Name</Col>
+                    <Col span={4}> Username</Col>
+                    <Col span={4}> Email</Col>
+                </Row>
+            </Col>
             {
                 !isLoading ? (
-                    <>
+                    <Col span={24}>
                     {
                         data && data.map((user, index) => {
                             return (
@@ -45,14 +48,14 @@ function DataGrid(props) {
                         })
                     }
                     <Row>{loadMore}</Row>
-                    </>
+                    </Col>
                 ) : (
-                    <div className="loading" >
+                    <Col span={24} className="loading" >
                         <Spin spinning={isLoading} className="spinner" size="large" tip="Loading..."  />
-                    </div>
+                    </Col>
                 )
             }
-        </div>
+        </Row>
     )
 }
   
