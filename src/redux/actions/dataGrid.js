@@ -5,7 +5,8 @@ import {
     GET_USER_DETAIL,
     SET_RESERVE_DATA,
     GET_RESERVE_DATA,
-} from './types'
+    CHANGE_NAT,
+} from '../types'
 import Services_Apis from '../../services/apis'
 
 const Apis = new Services_Apis()
@@ -13,6 +14,7 @@ const Apis = new Services_Apis()
 const getData = (index, nat) => async dispatch => {
 
     try{
+        console.log(nat)
         let res = await Apis.getData(index, nat)
         if(!res.errors){
             dispatch({
@@ -64,9 +66,23 @@ const getReserveData = (index) => async dispatch => {
     }
 }
 
+const changeNationality = (nat) => async dispatch => {
+
+    try{
+        dispatch({
+            type: CHANGE_NAT,
+            payload: nat,
+        })
+    } catch (error){
+        console.log(error)
+        return false
+    }
+}
+
 
 export {
     getData,
     getDetails,
     getReserveData,
+    changeNationality,
 }
