@@ -1,16 +1,12 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Radio } from 'antd';
 import {changeNationality} from '../../redux/actions/dataGrid';
-import {Link} from 'react-router-dom'
 import { 
-    Typography,
     Layout,
 } from 'antd';
-const { Title } = Typography;
-const { Header, Content } = Layout;
+const { Header } = Layout;
 import CustomTitle from '../../components/common/CustomTitle/CustomTitle.js'
-
+import SettingsPanel from '../../components/SettingsPanel/SettingsPanel.jsx'
 
 const NAT = [
     { label: 'USA', value: 'US' },
@@ -40,18 +36,12 @@ function Settings() {
                     Settings
                 </CustomTitle>
             </Header>
-            <Content>
-                <Title level={3}>Change the nationality</Title>
-                <Radio.Group
-                    options={NAT}
-                    onChange={handleChange}
-                    value={value}
-                    optionType="button"
-                    buttonStyle="solid"
-                />
-
-                <Link to="/">Back to home</Link>
-            </Content>
+            <SettingsPanel
+                options={NAT}
+                onChange={handleChange}
+                value={value}
+            />
+            
         </Layout>
     )
 }
