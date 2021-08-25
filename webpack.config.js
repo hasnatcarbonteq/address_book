@@ -43,8 +43,8 @@ module.exports = {
                         options: {
                             lessOptions: {
                                 modifyVars: {
-                                    'primary-color': '#90F5D7',
-                                    'text-color-secondary': '#5B6BF4',
+                                    'primary-color': '#5B6BF4',
+                                    'text-color-secondary': '#90F5D7',
                                     'error-color': '#FE3180' // error state color
                                 },
                                 javascriptEnabled: true,

@@ -7,9 +7,9 @@ import {
     GET_RESERVE_DATA,
     CHANGE_NAT,
 } from '../types'
-import Services_Apis from '../../services/apis'
+import UserService from '../../Services/UserService'
 
-const Apis = new Services_Apis()
+const Apis = new UserService()
 
 const getData = (index, nat) => async dispatch => {
 

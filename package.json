@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
@@ -69,6 +70,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
     "css-loader": "^6.2.0",
     "dotenv-webpack": "^7.0.3",
     "enzyme": "^3.11.0",
@@ -84,6 +86,7 @@
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
     "mini-css-extract-plugin": "^2.2.0",
+    "react-hot-loader": "^4.13.0",
     "react-test-renderer": "^17.0.2",
     "style-loader": "^3.2.1",
     "webpack": "^5.48.0",
