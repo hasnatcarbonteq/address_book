@@ -23,12 +23,12 @@ function UserTable(props) {
                 className="tableHeader"
                 align="middle"
                 justify="center">
-                    <Col span={1}>#</Col>
-                    <Col span={3}> Image</Col>
-                    <Col span={4}> First Name</Col>
-                    <Col span={4}> Last Name</Col>
-                    <Col span={4}> Username</Col>
-                    <Col span={4}> Email</Col>
+                    <Col xl={1} sm={0} md={0} xs={0}>#</Col>
+                    <Col xl={4} sm={8} md={8} xs={8} > Image</Col>
+                    <Col xl={4} sm={8} md={8} xs={8} > First Name</Col>
+                    <Col xl={4} sm={8} md={8} xs={8} > Last Name</Col>
+                    <Col xl={5} sm={12} md={12} xs={12} > Username</Col>
+                    <Col xl={6} sm={12} md={12} xs={12} > Email</Col>
                 </Row>
             </Col>
             {
@@ -44,12 +44,12 @@ function UserTable(props) {
                                         align="middle"
                                         justify="center"
                                         >
-                                        <Col span={1}>{index+1}</Col>
-                                        <Col span={3}> <img src={user.picture.medium} alt='user'/></Col>
-                                        <Col span={4} className="infoCell"> {user.name.first}</Col>
-                                        <Col span={4}> {user.name.last}</Col>
-                                        <Col span={4}> {user.login.username}</Col>
-                                        <Col span={4}> {user.email}</Col>
+                                        <Col xl={1} sm={0} md={0} xs={0}>{index+1}</Col>
+                                        <Col xl={3} sm={8} md={8} xs={8} > <img src={user.picture.medium} alt='user'/></Col>
+                                        <Col xl={4} sm={8} md={8} xs={8} > {user.name.first}</Col>
+                                        <Col xl={4} sm={8} md={8} xs={8} > {user.name.last}</Col>
+                                        <Col xl={4} sm={12} md={12} xs={12} > {user.login.username}</Col>
+                                        <Col xl={4} sm={12} md={12} xs={12} > {user.email}</Col>
                                     </Row>
                                 )
                             })
