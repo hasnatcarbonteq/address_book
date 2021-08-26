@@ -1,27 +1,27 @@
 import {
-    GET_DATA,
+    GET_USER_DATA,
     GET_USER_DETAIL,
-    SET_RESERVE_DATA,
-    GET_RESERVE_DATA,
+    SET_CHACHED_DATA,
+    GET_CHACHED_DATA,
     CHANGE_NAT,
 } from '../types'
 
 const init = {
     isLoading: true,
     page: 1,
-    data: [], 
-    reserveData: [],
+    userData: [], 
+    chachedData: [],
     details: {},  
     nat:'US',
 }
 
-const dataGridReducer = (state = init, action) => {
+const userTableReducer = (state = init, action) => {
     switch (action.type) {
-        case GET_DATA:
+        case GET_USER_DATA:
             return {
                 ...state,
                 isLoading: false,
-                data: action.payload,
+                userData: action.payload,
                 page: 1,
             }
         case GET_USER_DETAIL: 
@@ -29,18 +29,18 @@ const dataGridReducer = (state = init, action) => {
                 ...state,
                 details: action.payload,
             }
-        case SET_RESERVE_DATA: 
+        case SET_CHACHED_DATA: 
             return {
                 ...state,
-                reserveData: action.payload,
+                chachedData: action.payload,
                 page: state.page+1,
                 isLoading: false,
             }
-        case GET_RESERVE_DATA: 
-            let reserve = [...state.data, ...state.reserveData]
+        case GET_CHACHED_DATA: 
+            let reserve = [...state.userData, ...state.chachedData]
             return {
                 ...state,
-                data: reserve,
+                userData: reserve,
             }
         case CHANGE_NAT:
             return {
@@ -52,4 +52,4 @@ const dataGridReducer = (state = init, action) => {
     }
 }
 
-export default dataGridReducer
+export default userTableReducer

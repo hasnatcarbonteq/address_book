@@ -17,9 +17,12 @@ function UserTable(props) {
 
     return (
         <>
-        <Row className="dataTable">
+        <Row className="userTable">
             <Col span={24}>
-                <Row className="tableHeader">
+                <Row 
+                className="tableHeader"
+                align="middle"
+                justify="center">
                     <Col span={1}>#</Col>
                     <Col span={3}> Image</Col>
                     <Col span={4}> First Name</Col>
@@ -34,7 +37,13 @@ function UserTable(props) {
                         {
                             data && data.map((user, index) => {
                                 return (
-                                    <Row key={index} className="tableRow" onClick={() => getDetails(user)} >
+                                    <Row 
+                                        key={index} 
+                                        className="tableRow" 
+                                        onClick={() => getDetails(user)} 
+                                        align="middle"
+                                        justify="center"
+                                        >
                                         <Col span={1}>{index+1}</Col>
                                         <Col span={3}> <img src={user.picture.medium} alt='user'/></Col>
                                         <Col span={4} className="infoCell"> {user.name.first}</Col>

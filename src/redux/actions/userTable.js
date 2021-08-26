@@ -1,38 +1,36 @@
-import axios from "axios";
-
 import {
-    GET_DATA,
+    GET_USER_DATA,
     GET_USER_DETAIL,
-    SET_RESERVE_DATA,
-    GET_RESERVE_DATA,
+    SET_CHACHED_DATA,
+    GET_CHACHED_DATA,
     CHANGE_NAT,
 } from '../types'
 import UserService from '../../Services/UserService'
 
-const Apis = new UserService()
 
-const getData = (index, nat) => async dispatch => {
+const getUserList = (page, nat) => async dispatch => {
 
     try{
-        let res = await Apis.getData(index, nat)
-        if(!res.errors){
+        const userService = new UserService(nat,page,page+1)
+        let response = await userService.getUserData()
+        if(!response.errors){
             dispatch({
-                type: GET_DATA,
-                payload: res.data,
+                type: GET_USER_DATA,
+                payload: response.data,
             })
             dispatch({
-                type: SET_RESERVE_DATA,
-                payload: res.reserve,
+                type: SET_CHACHED_DATA,
+                payload: response.cachedResponse,
             })
             return true
-        } else throw res
+        } else throw response
     } catch (error) {
         console.log(error)
         return false
     }
 }
 
-const getDetails = (data) => async dispatch => {
+const getUserDetail = (data) => async dispatch => {
     try{
         dispatch({
             type: GET_USER_DETAIL,
@@ -45,16 +43,17 @@ const getDetails = (data) => async dispatch => {
     }
 }
 
-const getReserveData = (index, nat) => async dispatch => {
+const getChachedData = (page, nat) => async dispatch => {
     try{
-        let res = await Apis.getReserveData(index, nat)
-        if(res.reserve){
+        const userService = new UserService(nat,page,page+1)
+        let res = await userService.getChachedData()
+        if(res.cachedResponse){
             dispatch({
-                type: GET_RESERVE_DATA,
+                type: GET_CHACHED_DATA,
             })
             dispatch({
-                type: SET_RESERVE_DATA,
-                payload: res.reserve,
+                type: SET_CHACHED_DATA,
+                payload: res.cachedResponse,
             })
             return true
         } else throw res
@@ -79,8 +78,8 @@ const changeNationality = (nat) => async dispatch => {
 
 
 export {
-    getData,
-    getDetails,
-    getReserveData,
+    getUserList,
+    getUserDetail,
+    getChachedData,
     changeNationality,
 }
