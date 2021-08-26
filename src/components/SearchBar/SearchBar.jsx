@@ -20,7 +20,7 @@ function SearchBar(props) {
     };
 
     return (
-        <Form>
+        <Form className="searchForm">
             <Form.Item>
                 <Input 
                     placeholder="input search text" 

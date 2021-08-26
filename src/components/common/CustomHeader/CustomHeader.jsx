@@ -3,6 +3,9 @@ import {
     Typography,
     Layout,
 } from 'antd';
+import {
+    BrowserView,
+} from "react-device-detect";
 const { Header } = Layout;
 
 const { Title } = Typography;
@@ -11,11 +14,13 @@ function CustomHeader(props) {
 
     const { title } = props;
     return (
-        <Header className="customHeader">
-            <Title className="customTitle">
-                {title}
-            </Title>
-        </Header>
+        <BrowserView>
+            <Header className="customHeader">
+                <Title className="customTitle">
+                    {title}
+                </Title>
+            </Header>
+        </BrowserView>
     )
 }
 
