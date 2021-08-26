@@ -3,35 +3,41 @@ import {SERVER} from "../utils/constant";
 
 class UserService {
 
-    getData = async(index, nat) => {
-            let res = await http.get(`${SERVER}/?page=${index}&results=50&seed=address&nat=${nat}`) 
-            let res2 = await http.get(`${SERVER}/?page=${index+1}&results=50&seed=address&nat=${nat}`)
-            if(res.data && res2.data){
+    constructor(nat,page,nextPage){
+        this.nat = nat
+        this.page = page
+        this.nextPage = nextPage
+    }
+
+    getUserData = async() => {
+            let response = await http.get(`${SERVER}/?page=${this.page}&results=50&seed=address&nat=${this.nat}`) 
+            let cachedResponse = await http.get(`${SERVER}/?page=${this.nextPage}&results=50&seed=address&nat=${this.nat}`)
+            if(response.data && cachedResponse.data){
                 return {
-                    data: res.data.results,
-                    reserve: res2.data.results,
+                    data: response.data.results,
+                    cachedResponse: cachedResponse.data.results,
                     errors: ''
                 }
             } else {
                 return {
                     data: '',
                     reserve: '',
-                    errors: res || res2
+                    errors: response || cachedResponse
                 }
             }
     }
 
-    getReserveData = async (index, nat) => {
-            let res = await http.get(`${SERVER}/?page=${index+1}&results=50&seed=address&nat=${nat}`) 
-            if(res.data){
+    getChachedData = async () => {
+            let response = await http.get(`${SERVER}/?page=${this.nextPage}&results=50&seed=address&nat=${this.nat}`) 
+            if(response.data){
                 return {
-                    reserve: res.data.results,
+                    cachedResponse: response.data.results,
                     errors: ''
                 }
             } else {
                 return {
-                    reserve: '',
-                    errors: res,
+                    cachedResponse: '',
+                    errors: response,
                 }
             }
     }

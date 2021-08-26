@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import dataGridReducer from "./dataGridReducer";
+import userTableReducer from "./userTableReducer";
 
 const appReducer = combineReducers({
-    dataGrid: dataGridReducer,
+    userTable: userTableReducer,
 })
 
 const rootReducer = (state, action) => {

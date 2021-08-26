@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+    getUserList,
+    getUserDetail,
+    getChachedData,
+} from '../../redux/actions/userTable'
 import UserTable from '../../components/UserTable/UserTable.jsx'
 import SearchBar from '../../components/SearchBar/SearchBar.jsx'
 import DetailedView from '../../components/DetailedView/DetailedView.jsx'
-import {useDispatch, useSelector} from 'react-redux'
-import {
-    getData,
-    getDetails,
-    getReserveData,
-} from '../../redux/actions/dataGrid'
-import CustomTitle from '../../components/common/CustomTitle/CustomTitle.js'
-import {Link} from 'react-router-dom'
 import { 
     Layout,
 } from 'antd';
+import CustomHeader from '../../components/common/CustomHeader/CustomHeader.jsx'
+import CustomSidebar from '../../components/common/CustomSidebar/CustomSidebar.jsx'
+import CustomFooter from '../../components/common/CustomFooter/CustomFooter.jsx'
 import {uesOnScreen} from "../../hooks/customHooks"
 
 const { Header, Content } = Layout;
@@ -25,11 +26,11 @@ const options = {
 
 
 
-function home() {
+function home(props) {
 
     // redux
     const dispatch = useDispatch()
-    const dataGrid = useSelector(state => state.dataGrid)
+    const userTable = useSelector(state => state.userTable)
     const [ref, isOnScreen] = uesOnScreen(options)
 
 
@@ -44,32 +45,32 @@ function home() {
     // functions
 
     const handleDetails = async (user) => {
-        await dispatch(getDetails(user))
+        await dispatch(getUserDetail(user))
         setModal(true)
     }
 
     // life cycle
     useEffect(() => {
         (async () => {
-            await dispatch(getData(dataGrid.page, dataGrid.nat))
+            await dispatch(getUserList(userTable.page, userTable.nat))
         })()
     }, [])
 
     useEffect(() => {
-        setData(dataGrid.data)
-        setSearchData(dataGrid.data)
-        setIsLoading(dataGrid.isLoading)
-    }, [dataGrid.data])
+        setData(userTable.userData)
+        setSearchData(userTable.userData)
+        setIsLoading(userTable.isLoading)
+    }, [userTable.userData])
 
     useEffect(() => {
-        setDetails(dataGrid.details)
-    }, [dataGrid.details])
+        setDetails(userTable.details)
+    }, [userTable.details])
 
     useEffect(() => {
         (async () => {
             if(data.length < 1000 && isOnScreen) {
                 setLoadMore('fetching more results')
-                await dispatch(getReserveData(dataGrid.page, dataGrid.nat))
+                await dispatch(getChachedData(userTable.page, userTable.nat))
             }else {
                 setLoadMore('end of users catalog')
             }
@@ -77,32 +78,37 @@ function home() {
     }, [isOnScreen])
 
 
+
     return (
-        <Layout className="dataGrid" >
-            <Header>
-                <CustomTitle>
-                    Address Book
-                </CustomTitle>
-            </Header>
-            <Content id="content" >
-                <Link to="/settings">Settings</Link>
-                <SearchBar 
-                    data={data}
-                    setSearchData={setSearchData}
+        <Layout>
+            <CustomSidebar
+                {...props}
+            />
+            <Layout>
+
+                <CustomHeader 
+                    title="Address Book"
                 />
-                <UserTable 
-                    data={searchData}
-                    isLoading={isLoading}
-                    getDetails={handleDetails}
-                    loadMore={loadMore}
-                    setRef={ref}
-                />
-                <DetailedView 
-                    details={details} 
-                    modal={modal}
-                    setModal={setModal}
-                />
-            </Content>
+                <Content className="content" >
+                    <SearchBar 
+                        data={data}
+                        setSearchData={setSearchData}
+                    />
+                    <UserTable 
+                        data={searchData}
+                        isLoading={isLoading}
+                        getDetails={handleDetails}
+                        loadMore={loadMore}
+                        setRef={ref}
+                    />
+                    <DetailedView 
+                        details={details} 
+                        modal={modal}
+                        setModal={setModal}
+                    />
+                </Content>
+                <CustomFooter/>
+            </Layout>
 
         </Layout>
     )

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {changeNationality} from '../../redux/actions/dataGrid';
+import {changeNationality} from '../../redux/actions/userTable';
 import { 
     Layout,
 } from 'antd';
-const { Header } = Layout;
-import CustomTitle from '../../components/common/CustomTitle/CustomTitle.js'
+import CustomHeader from '../../components/common/CustomHeader/CustomHeader.jsx'
 import SettingsPanel from '../../components/SettingsPanel/SettingsPanel.jsx'
+import CustomSidebar from '../../components/common/CustomSidebar/CustomSidebar.jsx'
 
 const NAT = [
     { label: 'USA', value: 'US' },
@@ -16,10 +16,10 @@ const NAT = [
 ]
 
 
-function Settings() {
+function Settings(props) {
 
     const dispatch = useDispatch()
-    const nat = useSelector(state => state.dataGrid.nat)
+    const nat = useSelector(state => state.userTable.nat)
     
     const [value, setValue] = useState(nat)
 
@@ -31,16 +31,19 @@ function Settings() {
     }
     return (
         <Layout>
-            <Header>
-                <CustomTitle>
-                    Settings
-                </CustomTitle>
-            </Header>
+        <CustomSidebar
+            {...props}
+        />
+        <Layout>
+            <CustomHeader 
+                title="Settings"
+            />
             <SettingsPanel
                 options={NAT}
                 onChange={handleChange}
                 value={value}
             />
+        </Layout>
             
         </Layout>
     )

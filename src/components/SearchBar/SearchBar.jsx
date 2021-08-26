@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, } from 'antd'
+import { Input, Form} from 'antd'
 import {
     SearchOutlined,
 } from '@ant-design/icons';
@@ -20,15 +20,18 @@ function SearchBar(props) {
     };
 
     return (
-        <div>
-            <Input 
-                placeholder="input search text" 
-                allowClear  
-                onChange={onSearch}
-                suffix={<SearchOutlined />}
-                className="searchBar"
-            />
-        </div>
+        <Form>
+            <Form.Item>
+                <Input 
+                    placeholder="input search text" 
+                    allowClear  
+                    onChange={onSearch}
+                    suffix={<SearchOutlined />}
+                    className="searchBar"
+                    size="large"
+                />
+            </Form.Item>
+        </Form>
     )
 }
 

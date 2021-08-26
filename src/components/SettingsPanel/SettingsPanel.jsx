@@ -6,14 +6,13 @@ import {
 } from 'antd';
 const { Title } = Typography;
 const { Content } = Layout;
-import {Link} from 'react-router-dom'
 
 
 const SettingsPanel = (props) => {
 
     const {options, onChange, value} = props
     return (
-        <Content>
+        <Content className="settingsPanel" >
             <Title level={3}>Change the nationality</Title>
             <Radio.Group
                 options={options}
@@ -21,9 +20,8 @@ const SettingsPanel = (props) => {
                 value={value}
                 optionType="button"
                 buttonStyle="solid"
+                className="settingsRadioGroup"
             />
-
-            <Link to="/">Back to home</Link>
         </Content>
     )
 }
