@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import userTableReducer from "./userTableReducer";
 
 const appReducer = combineReducers({
-    userTable: userTableReducer,
+    userList: userTableReducer,
 })
 
 const rootReducer = (state, action) => {

@@ -5,7 +5,7 @@ import {
     Spin, 
 } from 'antd';
 
-function UserTable(props) {
+function UserList(props) {
 
     const {
         data,
@@ -16,7 +16,6 @@ function UserTable(props) {
     } = props;
 
     return (
-        <>
         <Row className="userTable">
             <Col span={24}>
                 <Row 
@@ -61,10 +60,9 @@ function UserTable(props) {
                     </Col>
                 )
             }
-        <Col className="loadMore" ref={setRef}>{loadMore}</Col>
+            <Col className="loadMore" ref={setRef}>{loadMore}</Col>
         </Row>
-        </>
     )
 }
   
-export default UserTable;
+export default UserList;

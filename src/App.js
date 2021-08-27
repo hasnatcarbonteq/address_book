@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { Provider } from "react-redux";
 import store from './store'
 
-import Home from './container/Home/Home';
-import Settings from './container/Settings/Settings'
+import HomeContainer from './container/Home/HomeContainer';
+import SettingsContainer from './container/Settings/SettingsContainer'
 
 function App() {
     return (
         <Provider store={store}>
             <Router>
                 <Switch>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/settings' exact component={Settings} />
+                    <Route path='/' exact component={HomeContainer} />
+                    <Route path='/settings' exact component={SettingsContainer} />
                 </Switch>
             </Router>
         </Provider>
